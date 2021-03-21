@@ -1,15 +1,68 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Question[] questions;
+    /*public Question[] questions = new Question[500];*/
+    public List<Question> questions = new List<Question>();
     public int randquest;
+
+    IEnumerator GetRequest()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("http://localhost/QuizGame/index.php");
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.LogError(www.error);
+        }
+        else
+        {
+            /*Debug.Log(www.downloadHandler.text);*/
+            int index = 0;
+
+            string[] rows = www.downloadHandler.text.Split('!');
+            Debug.Log(rows[0]);
+            foreach (string row in rows)
+            {
+                string[] parts = row.Split('|');
+                if (parts.Length == 9)
+                {
+                    foreach (string part in parts)
+                    {
+                        Debug.Log(part);
+                    }
+
+                    Question question = new Question(parts[1], Convert.ToInt32(parts[2]), parts[3], parts[4], parts[5], parts[6], Convert.ToInt32(parts[7]), parts[8]);
+
+
+                    questions.Add(question);
+                    
+                }
+
+            }
+            PrepareQuestion();
+
+        }
+        
+    }
 
     public void PopulateQuestionList()
     {
-        questions = new Question[11];
+        /*UnityWebRequest itemsData = new UnityWebRequest("http://localhost/QuizGame/index.php");
+        *//*yield itemsData;*//*
+        string itemString = itemsData.downloadHandler.text;
+        Debug.Log(itemString);*/
+
+
+        StartCoroutine(GetRequest());
+
+
+        /*questions = new Question[11];
         questions[0] = new Question("Care este capitala Romaniei?", 1, "Bucuresti", "Anglia", "Suceava", "Craiova", 1);
         questions[1] = new Question("Care este cel mai inalt munte din lume?", 2, "Carpati", "Everest", "Bucegi", "Alpi", 2);
         questions[2] = new Question("In ce an a avut loc Batalia din Normandia?", 3, "2010", "1970", "1944", "1921", 2);
@@ -21,13 +74,13 @@ public class GameManager : MonoBehaviour
         questions[8] = new Question("League of Legends este un:", 2, "FPS", "MOBA", "Battle Royale", "Survival horror", 2);
         questions[9] = new Question("Care a fost cel mai vandut joc in 2020 in USA?", 1, "Call of Duty: Black Ops: Cold War", "Assassin’s Creed: Valhalla", "The Last of Us: Part II", "FIFA 21", 1);
         questions[10] = new Question("Care dintre urmatoarele jocuri a inregistrat cel mai mare numar de jucatori?", 2, "CS:GO", "CrossFire", "PUBG", "DotA2", 3);
-
+*/
     }
 
     public void PrepareQuestion()
     {
         System.Random random = new System.Random();
-        randquest = random.Next(0, questions.Length);
+        randquest = random.Next(0, questions.Count);
         GameObject.Find("QuestionPanel").GetComponentInChildren<Text>().text = questions[randquest].question;
         GameObject.Find("Button1").GetComponentInChildren<Text>().text = questions[randquest].option1;
         GameObject.Find("Button2").GetComponentInChildren<Text>().text = questions[randquest].option2;
@@ -49,7 +102,7 @@ public class GameManager : MonoBehaviour
 
         /* text = GetComponent<Text>();
          text.text = "Score" + points.ToString();*/
-        
+
 
     }
 
@@ -66,7 +119,7 @@ public class GameManager : MonoBehaviour
         GetComponent<Text>().text = points.ToString();*/
         /*text = GetComponent<Text>();
         text.text = "Score" + points.ToString();*/
-        
+
     }
 
     void TaskOnClick3()
@@ -82,7 +135,7 @@ public class GameManager : MonoBehaviour
         GetComponent<GUIText>().text = points.ToString();*/
         /*text = GetComponent<Text>();
         text.text = "Score" + points.ToString();*/
-       
+
     }
 
     void TaskOnClick4()
@@ -98,15 +151,15 @@ public class GameManager : MonoBehaviour
                 GetComponent<Text>().text = points.ToString();*/
         /*text = GetComponent<Text>();
         text.text = "Score" + points.ToString();*/
-        
+
     }
 
 
     void Start()
     {
         PopulateQuestionList();
-        
-        PrepareQuestion();
+
+
 
 
         Button btn1 = GameObject.Find("Button1").GetComponent<Button>();

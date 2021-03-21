@@ -8,8 +8,9 @@ public class Question
     public string option3;
     public string option4;
     public readonly int points;
+    public string category;
 
-    public Question(string question, int correctAnswer, string option1, string option2, string option3, string option4, int points)
+    public Question(string question, int correctAnswer, string option1, string option2, string option3, string option4, int points, string category)
     {
         this.question = question;
         this.correctAnswer = correctAnswer;
@@ -18,5 +19,6 @@ public class Question
         this.option3 = option3;
         this.option4 = option4;
         this.points = points;
+        this.category = category;
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Assets\MaterialUI\Scripts\SelectionBoxSubscriber.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\SnapButtonToText.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\MaterialUIScaler.cs" />
+    <Compile Include="Assets\ScoreScript.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\TextInputLine.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\Toaster.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\RippleAnim.cs" />
@@ -96,11 +97,11 @@
     <Compile Include="Assets\MaterialUI\Scripts\ToggleConfig.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\RadioConfig.cs" />
     <Compile Include="Assets\MaterialUI\Examples\Scripts\04 - RadioButton\Example04.cs" />
+    <Compile Include="Assets\DBConnection.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\SliderConfig.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\ToastControl.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\MaterialUIVersion.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\ShadowSnap.cs" />
-    <Compile Include="Assets\ScoreScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\MaterialUI\Fonts\NOTICE.txt" />
