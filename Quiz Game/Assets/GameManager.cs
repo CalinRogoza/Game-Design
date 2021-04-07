@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
 
     public void PrepareQuestion()
     {
+        GameObject go = GameObject.Find("PLAYERUNIT 1");
+        Debug.Log("GOOO" + go);
         /*System.Random random = new System.Random();
         randquest = random.Next(0, questions.Count);*/
         GameObject.Find("QuestionPanel").GetComponentInChildren<Text>().text = questions[questionIndex].question;
