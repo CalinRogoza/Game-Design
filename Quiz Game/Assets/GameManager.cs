@@ -1,3 +1,4 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,58 +56,61 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GetRequest());
     }
 
+    public static int questionIndex = 0;
+
     public void PrepareQuestion()
     {
-        System.Random random = new System.Random();
-        randquest = random.Next(0, questions.Count);
-        GameObject.Find("QuestionPanel").GetComponentInChildren<Text>().text = questions[randquest].question;
-        GameObject.Find("Button1").GetComponentInChildren<Text>().text = questions[randquest].option1;
-        GameObject.Find("Button2").GetComponentInChildren<Text>().text = questions[randquest].option2;
-        GameObject.Find("Button3").GetComponentInChildren<Text>().text = questions[randquest].option3;
-        GameObject.Find("Button4").GetComponentInChildren<Text>().text = questions[randquest].option4;
+        /*System.Random random = new System.Random();
+        randquest = random.Next(0, questions.Count);*/
+        GameObject.Find("QuestionPanel").GetComponentInChildren<Text>().text = questions[questionIndex].question;
+        GameObject.Find("Button1").GetComponentInChildren<Text>().text = questions[questionIndex].option1;
+        GameObject.Find("Button2").GetComponentInChildren<Text>().text = questions[questionIndex].option2;
+        GameObject.Find("Button3").GetComponentInChildren<Text>().text = questions[questionIndex].option3;
+        GameObject.Find("Button4").GetComponentInChildren<Text>().text = questions[questionIndex].option4;
+        
     }
 
     void TaskOnClick1()
     {
-        if (questions[randquest].correctAnswer == 1)
+        if (questions[questionIndex].correctAnswer == 1)
         {
             Debug.Log("CORECT!");
-            ScoreScript.scoreValue += questions[randquest].points;
+            ScoreScript.scoreValue += questions[questionIndex].points;
         }
-
+        questionIndex += 1;
         PrepareQuestion();
     }
 
     void TaskOnClick2()
     {
-        if (questions[randquest].correctAnswer == 2)
+        if (questions[questionIndex].correctAnswer == 2)
         {
             Debug.Log("CORECT!");
-            ScoreScript.scoreValue += questions[randquest].points;
+            ScoreScript.scoreValue += questions[questionIndex].points;
         }
-
+        questionIndex += 1;
         PrepareQuestion();
     }
 
     void TaskOnClick3()
     {
-        if (questions[randquest].correctAnswer == 3)
+        if (questions[questionIndex].correctAnswer == 3)
         {
             Debug.Log("CORECT!");
-            ScoreScript.scoreValue += questions[randquest].points;
+            ScoreScript.scoreValue += questions[questionIndex].points;
         }
-
+        questionIndex += 1;
         PrepareQuestion();
     }
 
     void TaskOnClick4()
     {
-        if (questions[randquest].correctAnswer == 4)
+        if (questions[questionIndex].correctAnswer == 4)
         {
             Debug.Log("CORECT!");
-            ScoreScript.scoreValue += questions[randquest].points;
+            ScoreScript.scoreValue += questions[questionIndex].points;
         }
-
+        questionIndex += 1;
         PrepareQuestion();
     }
 
@@ -126,4 +130,5 @@ public class GameManager : MonoBehaviour
         btn4.onClick.AddListener(TaskOnClick4);
 
     }
+
 }

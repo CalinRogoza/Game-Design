@@ -1,6 +1,4 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,11 +18,21 @@ public class PlayerObject : NetworkBehaviour
     }
 
     public GameObject PlayerUnitPrefab;
+    public int ServerPoints = 0;
+    public int ClientPoints = 0;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isLocalPlayer)
+        {
+            Debug.Log("SERVER: " + GameManager.questionIndex);
+        }
+
+/*        if (isClient)
+        {
+            Debug.Log("Client: " + GameManager.questionIndex);
+        }*/
     }
 
  /*   [Command]

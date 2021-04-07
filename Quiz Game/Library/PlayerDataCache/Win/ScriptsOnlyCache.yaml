@@ -615,7 +615,7 @@ ScriptsOnlyBuild:
     className: BenchmarkNetworkManager
   - hash:
       serializedVersion: 2
-      Hash: 4b80b6cef17592622e073a2387bf7242
+      Hash: 8d7df69d267f1709ed129763ce630528
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerObject
