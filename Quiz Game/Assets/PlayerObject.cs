@@ -18,7 +18,9 @@ public class PlayerObject : NetworkBehaviour
         CmdSpawnMyUnit();
     }
 
-    public GameObject PlayerUnitPrefab;
+    public GameObject PlayerUnitPrefab1;
+    public GameObject PlayerUnitPrefab2;
+
     [SyncVar]
     public int ServerPoints = 0;
     [SyncVar]
@@ -45,10 +47,15 @@ public class PlayerObject : NetworkBehaviour
     void CmdSpawnMyUnit()
     {
         NetworkManager nm = FindObjectOfType<NetworkManager>();
-       
+        if(nm.numPlayers == 1)
+        {
+            GameObject go = Instantiate(PlayerUnitPrefab1);
+
+            NetworkServer.Spawn(go);
+        }
         if(nm.numPlayers == 2)
         {
-            GameObject go = Instantiate(PlayerUnitPrefab);
+            GameObject go = Instantiate(PlayerUnitPrefab2);
 
             NetworkServer.Spawn(go);
         }

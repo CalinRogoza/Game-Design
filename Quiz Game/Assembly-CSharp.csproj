@@ -104,6 +104,7 @@
     <Compile Include="Assets\MaterialUI\Scripts\ToastControl.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\MaterialUIVersion.cs" />
     <Compile Include="Assets\MaterialUI\Scripts\ShadowSnap.cs" />
+    <Compile Include="Assets\NetworkManagerQuiz.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

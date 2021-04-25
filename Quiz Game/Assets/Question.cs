@@ -21,4 +21,9 @@ public class Question
         this.points = points;
         this.category = category;
     }
+
+    public override string ToString()
+    {
+        return question + ';' + correctAnswer + ';' + option1 + ';' + option2 + ';' + option3 + ';' + option4 + ';' + points + ';' + category;
+    }
 }

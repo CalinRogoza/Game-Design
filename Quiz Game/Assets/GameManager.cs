@@ -1,17 +1,23 @@
 using Mirror;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public List<Question> questions = new List<Question>();
     public int randquest;
+    NetworkManagerQuiz nmq;
 
-    IEnumerator GetRequest()
+    /*private void Awake()
+    {
+        GameObject gameObject = new GameObject("NetworkManagerQuiz");
+        nmq = gameObject.AddComponent<NetworkManagerQuiz>();
+    }*/
+
+    /*public IEnumerator GetRequest()
     {
         UnityWebRequest www = UnityWebRequest.Get("http://localhost/QuizGame/index.php");
         yield return www.SendWebRequest();
@@ -22,7 +28,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            /*Debug.Log(www.downloadHandler.text);*/
+            *//*Debug.Log(www.downloadHandler.text);*//*
             int index = 0;
 
             string[] rows = www.downloadHandler.text.Split('!');
@@ -54,14 +60,14 @@ public class GameManager : MonoBehaviour
     public void PopulateQuestionList()
     {
         StartCoroutine(GetRequest());
-    }
+    }*/
 
     public static int questionIndex = 0;
 
     public void PrepareQuestion()
     {
         GameObject go = GameObject.Find("PLAYERUNIT 1");
-        Debug.Log("GOOO" + go);
+        Debug.Log("GOOO");
         /*System.Random random = new System.Random();
         randquest = random.Next(0, questions.Count);*/
         GameObject.Find("QuestionPanel").GetComponentInChildren<Text>().text = questions[questionIndex].question;
@@ -88,7 +94,7 @@ public class GameManager : MonoBehaviour
         if (questions[questionIndex].correctAnswer == 2)
         {
             Debug.Log("CORECT!");
-            ScoreScript.scoreValue += questions[questionIndex].points;
+            ScoreScript.scoreValue +=questions[questionIndex].points;
         }
         questionIndex += 1;
         PrepareQuestion();
@@ -119,7 +125,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        PopulateQuestionList();
+        /*        PopulateQuestionList();*/
 
         Button btn1 = GameObject.Find("Button1").GetComponent<Button>();
         Button btn2 = GameObject.Find("Button2").GetComponent<Button>();
@@ -131,6 +137,39 @@ public class GameManager : MonoBehaviour
         btn3.onClick.AddListener(TaskOnClick3);
         btn4.onClick.AddListener(TaskOnClick4);
 
+        GameManager nm = FindObjectOfType<GameManager>();
+        Debug.Log("ID: " + nm.GetInstanceID());
+
+        /*Debug.Log("INTREBARE: " + questions[0]);*/
+        /*if (isClient)
+        {
+            randquest = 1;
+        }
+        else if (isServer)
+        {
+            randquest = 2;
+        }*/
+
+        
+            // Set a variable to the Documents path.
+            string docPath =
+              Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamReader inputFile = new StreamReader(Path.Combine(docPath, "WriteLines.txt")))
+            {
+                string line = inputFile.ReadLine();
+                while(line != null)
+                {
+                    string[] parts = line.Split(';');
+                    Question question = new Question(parts[0], Convert.ToInt32(parts[1]), parts[2], parts[3], parts[4], parts[5], Convert.ToInt32(parts[6]), parts[7]);
+                    questions.Add(question);
+                    line = inputFile.ReadLine();
+                }
+            }
+
+            PrepareQuestion();
+        
     }
 
 }

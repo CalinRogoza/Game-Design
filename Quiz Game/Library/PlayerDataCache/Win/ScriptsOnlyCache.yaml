@@ -9,11 +9,10 @@ ScriptsOnlyBuild:
     - MaterialUI.ShadowAnim
     - MaterialUI.SpriteSwapper
     - MaterialUI.ToastAnim
-    - PlayerObject
+    - NetworkManagerQuiz
     - ScoreScript
     Mirror.dll:
     - Mirror.NetworkIdentity
-    - Mirror.NetworkManager
     - Mirror.NetworkManagerHUD
     - kcp2k.KcpTransport
     Unity.2D.Animation.Editor.dll:
@@ -150,15 +149,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2464}
     - Class: 114
-      Script: {instanceID: 2564}
-    - Class: 114
       Script: {instanceID: 2654}
     - Class: 114
       Script: {instanceID: 3098}
     - Class: 114
       Script: {instanceID: 3270}
-    - Class: 114
-      Script: {instanceID: 3504}
     - Class: 114
       Script: {instanceID: 3780}
     - Class: 114
@@ -177,6 +172,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5210}
     - Class: 114
       Script: {instanceID: 5588}
+    - Class: 114
+      Script: {instanceID: 26622}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -592,7 +589,7 @@ ScriptsOnlyBuild:
     className: BenchmarkNetworkManager
   - hash:
       serializedVersion: 2
-      Hash: 8d7df69d267f1709ed129763ce630528
+      Hash: f3079a6f0dc55e178972823be0904805
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerObject
@@ -922,7 +919,7 @@ ScriptsOnlyBuild:
     className: ZoneHandler
   - hash:
       serializedVersion: 2
-      Hash: ba6917d0b19cb1f71b0426423272ac72
+      Hash: 74685f69bfbffdb61278cfa743dad05f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1496,6 +1493,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: MaterialUI
     className: ShadowSnap
+  - hash:
+      serializedVersion: 2
+      Hash: 8908603bb95ee9806522f91d7f1b0507
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NetworkManagerQuiz
   platform: 5
   scenePathNames:
   - Assets/Scenes/StarterScene.unity
